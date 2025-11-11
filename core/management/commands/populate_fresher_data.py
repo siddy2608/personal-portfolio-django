@@ -41,40 +41,45 @@ class Command(BaseCommand):
         if created:
             self.stdout.write('Created profile')
 
-        # Create skills appropriate for a final year student
+        # Create skills matching resume
         skills_data = [
             # Programming Languages
             {'name': 'Python', 'category': 'backend', 'proficiency': 85, 'icon': 'fab fa-python', 'featured': True, 'order': 1},
-            {'name': 'JavaScript', 'category': 'frontend', 'proficiency': 80, 'icon': 'fab fa-js-square', 'featured': True, 'order': 2},
-            {'name': 'Java', 'category': 'backend', 'proficiency': 75, 'icon': 'fab fa-java', 'featured': True, 'order': 3},
-            {'name': 'C++', 'category': 'backend', 'proficiency': 70, 'icon': 'fas fa-code', 'featured': False, 'order': 4},
+            {'name': 'Java', 'category': 'backend', 'proficiency': 80, 'icon': 'fab fa-java', 'featured': True, 'order': 2},
+            {'name': 'JavaScript', 'category': 'frontend', 'proficiency': 85, 'icon': 'fab fa-js-square', 'featured': True, 'order': 3},
+            {'name': 'HTML5', 'category': 'frontend', 'proficiency': 90, 'icon': 'fab fa-html5', 'featured': True, 'order': 4},
+            {'name': 'CSS3', 'category': 'frontend', 'proficiency': 88, 'icon': 'fab fa-css3-alt', 'featured': True, 'order': 5},
+            {'name': 'SQL', 'category': 'database', 'proficiency': 82, 'icon': 'fas fa-database', 'featured': True, 'order': 6},
             
-            # Web Technologies
-            {'name': 'HTML5', 'category': 'frontend', 'proficiency': 90, 'icon': 'fab fa-html5', 'featured': True, 'order': 5},
-            {'name': 'CSS3', 'category': 'frontend', 'proficiency': 85, 'icon': 'fab fa-css3-alt', 'featured': True, 'order': 6},
-            {'name': 'React', 'category': 'frontend', 'proficiency': 75, 'icon': 'fab fa-react', 'featured': True, 'order': 7},
-            {'name': 'Bootstrap', 'category': 'frontend', 'proficiency': 80, 'icon': 'fab fa-bootstrap', 'featured': False, 'order': 8},
+            # Frameworks & Libraries
+            {'name': 'Django', 'category': 'backend', 'proficiency': 85, 'icon': 'fab fa-python', 'featured': True, 'order': 7},
+            {'name': 'Flask', 'category': 'backend', 'proficiency': 78, 'icon': 'fab fa-python', 'featured': True, 'order': 8},
+            {'name': 'React', 'category': 'frontend', 'proficiency': 80, 'icon': 'fab fa-react', 'featured': True, 'order': 9},
+            {'name': 'TensorFlow', 'category': 'other', 'proficiency': 75, 'icon': 'fas fa-brain', 'featured': True, 'order': 10},
+            {'name': 'PyTorch', 'category': 'other', 'proficiency': 72, 'icon': 'fas fa-brain', 'featured': True, 'order': 11},
+            {'name': 'Scikit-learn', 'category': 'other', 'proficiency': 82, 'icon': 'fas fa-brain', 'featured': True, 'order': 12},
+            {'name': 'Pandas', 'category': 'other', 'proficiency': 80, 'icon': 'fas fa-chart-line', 'featured': False, 'order': 13},
+            {'name': 'NumPy', 'category': 'other', 'proficiency': 78, 'icon': 'fas fa-calculator', 'featured': False, 'order': 14},
+            {'name': 'OpenCV', 'category': 'other', 'proficiency': 80, 'icon': 'fas fa-eye', 'featured': True, 'order': 15},
+            {'name': 'Matplotlib', 'category': 'other', 'proficiency': 75, 'icon': 'fas fa-chart-bar', 'featured': False, 'order': 16},
+            {'name': 'MediaPipe', 'category': 'other', 'proficiency': 75, 'icon': 'fas fa-hand-paper', 'featured': False, 'order': 17},
             
-            # Backend & Frameworks
-            {'name': 'Django', 'category': 'backend', 'proficiency': 80, 'icon': 'fab fa-python', 'featured': True, 'order': 9},
-            {'name': 'Flask', 'category': 'backend', 'proficiency': 75, 'icon': 'fab fa-python', 'featured': False, 'order': 10},
-            {'name': 'Node.js', 'category': 'backend', 'proficiency': 70, 'icon': 'fab fa-node-js', 'featured': False, 'order': 11},
+            # Databases
+            {'name': 'PostgreSQL', 'category': 'database', 'proficiency': 80, 'icon': 'fas fa-database', 'featured': True, 'order': 18},
+            {'name': 'MySQL', 'category': 'database', 'proficiency': 82, 'icon': 'fas fa-database', 'featured': True, 'order': 19},
+            {'name': 'MongoDB', 'category': 'database', 'proficiency': 75, 'icon': 'fas fa-database', 'featured': True, 'order': 20},
+            {'name': 'SQLite', 'category': 'database', 'proficiency': 85, 'icon': 'fas fa-database', 'featured': True, 'order': 21},
+            {'name': 'Redis', 'category': 'database', 'proficiency': 70, 'icon': 'fas fa-database', 'featured': False, 'order': 22},
             
-            # Database
-            {'name': 'MySQL', 'category': 'database', 'proficiency': 80, 'icon': 'fas fa-database', 'featured': True, 'order': 12},
-            {'name': 'SQLite', 'category': 'database', 'proficiency': 85, 'icon': 'fas fa-database', 'featured': False, 'order': 13},
-            {'name': 'MongoDB', 'category': 'database', 'proficiency': 70, 'icon': 'fas fa-database', 'featured': False, 'order': 14},
-            
-            # AI/ML
-            {'name': 'TensorFlow', 'category': 'other', 'proficiency': 75, 'icon': 'fas fa-brain', 'featured': True, 'order': 15},
-            {'name': 'Scikit-learn', 'category': 'other', 'proficiency': 80, 'icon': 'fas fa-brain', 'featured': True, 'order': 16},
-            {'name': 'OpenCV', 'category': 'other', 'proficiency': 70, 'icon': 'fas fa-eye', 'featured': False, 'order': 17},
-            
-            # Tools & DevOps
-            {'name': 'Git', 'category': 'tools', 'proficiency': 85, 'icon': 'fab fa-git-alt', 'featured': True, 'order': 18},
-            {'name': 'GitHub', 'category': 'tools', 'proficiency': 90, 'icon': 'fab fa-github', 'featured': False, 'order': 19},
-            {'name': 'VS Code', 'category': 'tools', 'proficiency': 90, 'icon': 'fas fa-code', 'featured': False, 'order': 20},
-            {'name': 'Postman', 'category': 'tools', 'proficiency': 80, 'icon': 'fas fa-paper-plane', 'featured': False, 'order': 21},
+            # Developer Tools
+            {'name': 'Git', 'category': 'tools', 'proficiency': 88, 'icon': 'fab fa-git-alt', 'featured': True, 'order': 23},
+            {'name': 'GitHub', 'category': 'tools', 'proficiency': 90, 'icon': 'fab fa-github', 'featured': True, 'order': 24},
+            {'name': 'Docker', 'category': 'tools', 'proficiency': 75, 'icon': 'fab fa-docker', 'featured': True, 'order': 25},
+            {'name': 'Postman', 'category': 'tools', 'proficiency': 85, 'icon': 'fas fa-paper-plane', 'featured': True, 'order': 26},
+            {'name': 'Jira', 'category': 'tools', 'proficiency': 70, 'icon': 'fab fa-jira', 'featured': False, 'order': 27},
+            {'name': 'AWS', 'category': 'tools', 'proficiency': 72, 'icon': 'fab fa-aws', 'featured': True, 'order': 28},
+            {'name': 'Vercel', 'category': 'tools', 'proficiency': 80, 'icon': 'fas fa-cloud', 'featured': False, 'order': 29},
+            {'name': 'Netlify', 'category': 'tools', 'proficiency': 75, 'icon': 'fas fa-cloud', 'featured': False, 'order': 30},
         ]
 
         for skill_data in skills_data:
@@ -85,67 +90,37 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f'Created skill: {skill.name}')
 
-        # Create projects appropriate for a final year student
+        # Create projects matching resume
         projects_data = [
             {
-                'title': 'AI-Powered Resume Parser',
-                'description': 'Developed an intelligent resume parsing system using Python, NLP, and machine learning. The system extracts key information from resumes, categorizes skills, and provides insights for HR professionals. Features include PDF parsing, skill extraction, and candidate matching algorithms.',
+                'title': 'Threat Intelligence Platform (Phishing Detection)',
+                'description': 'Spearheaded the development and deployment of a scalable full-stack application on Vercel, providing real-time URL classification to enhance web security for end-users. Trained and fine-tuned Machine Learning models (Logistic Regression, Random Forest) with Scikit-learn, achieving a 95% detection accuracy on a dataset of over 10,000 URLs. Built a secure, high-throughput RESTful API to process asynchronous URL analysis requests and deliver ML-driven threat classifications with sub-second response times.',
                 'category': 'ai',
-                'github_url': 'https://github.com/siddharth-mishra/resume-parser-ai',
-                'live_url': 'https://resume-parser-demo.vercel.app',
+                'github_url': 'https://github.com/siddy2608/threat-intelligence-platform',
+                'live_url': 'https://threat-intelligence.vercel.app',
                 'featured': True,
-                'completed_date': date.today() - timedelta(days=45),
+                'completed_date': date(2025, 6, 15),
                 'order': 1,
             },
             {
-                'title': 'E-Learning Platform',
-                'description': 'Built a comprehensive e-learning platform using Django and React. Features include user authentication, course management, video streaming, progress tracking, and interactive quizzes. Implemented real-time notifications and a responsive design for mobile compatibility.',
-                'category': 'web',
-                'github_url': 'https://github.com/siddharth-mishra/elearning-platform',
-                'live_url': 'https://elearning-demo.herokuapp.com',
+                'title': 'IsharaX (Gesture Control System)',
+                'description': 'Created a real-time Human-Computer Interaction (HCI) system using OpenCV and MediaPipe to translate hand gestures into system commands with over 90% recognition accuracy. Integrated the Speech Recognition library to develop a multi-modal command engine, achieving a 95% command success rate for synchronized voice and gesture-based system control.',
+                'category': 'ai',
+                'github_url': 'https://github.com/siddy2608/isharax',
+                'live_url': 'https://isharax-demo.vercel.app',
                 'featured': True,
-                'completed_date': date.today() - timedelta(days=90),
+                'completed_date': date(2024, 7, 20),
                 'order': 2,
             },
             {
-                'title': 'Smart Attendance System',
-                'description': 'Created an AI-powered attendance system using facial recognition and computer vision. Built with Python, OpenCV, and Django. Features include real-time face detection, attendance tracking, and automated reporting. Integrated with a web dashboard for administrators.',
-                'category': 'ai',
-                'github_url': 'https://github.com/siddharth-mishra/smart-attendance',
-                'live_url': 'https://attendance-system.vercel.app',
+                'title': 'RasoiRack (Recipe Management System)',
+                'description': 'Implemented a secure authentication module with role-based access controls (RBAC), managing permissions for 3 distinct user roles. Architected a normalized SQLite database and its corresponding CRUD API, ensuring 100% data integrity across relational tables and providing support for image file uploads.',
+                'category': 'web',
+                'github_url': 'https://github.com/siddy2608/rasoirack',
+                'live_url': 'https://rasoirack.vercel.app',
                 'featured': True,
-                'completed_date': date.today() - timedelta(days=120),
+                'completed_date': date(2022, 1, 15),
                 'order': 3,
-            },
-            {
-                'title': 'Weather Forecast API',
-                'description': 'Developed a RESTful weather API using Django REST Framework. Integrates with multiple weather services, provides historical data analysis, and includes caching for performance optimization. Features comprehensive API documentation and rate limiting.',
-                'category': 'api',
-                'github_url': 'https://github.com/siddharth-mishra/weather-api',
-                'live_url': 'https://weather-api-docs.herokuapp.com',
-                'featured': False,
-                'completed_date': date.today() - timedelta(days=150),
-                'order': 4,
-            },
-            {
-                'title': 'Task Management App',
-                'description': 'Built a full-stack task management application with React frontend and Django backend. Features include user authentication, task creation/editing, priority levels, due dates, and team collaboration. Implemented real-time updates using WebSockets.',
-                'category': 'web',
-                'github_url': 'https://github.com/siddharth-mishra/task-manager',
-                'live_url': 'https://task-manager-demo.vercel.app',
-                'featured': False,
-                'completed_date': date.today() - timedelta(days=180),
-                'order': 5,
-            },
-            {
-                'title': 'Data Visualization Dashboard',
-                'description': 'Created an interactive data visualization dashboard using React and D3.js. Features include multiple chart types, real-time data updates, filtering capabilities, and export functionality. Integrated with various data sources and APIs.',
-                'category': 'web',
-                'github_url': 'https://github.com/siddharth-mishra/data-viz-dashboard',
-                'live_url': 'https://data-viz-demo.vercel.app',
-                'featured': False,
-                'completed_date': date.today() - timedelta(days=210),
-                'order': 6,
             },
         ]
 
@@ -156,52 +131,82 @@ class Command(BaseCommand):
             )
             if created:
                 # Add relevant skills to each project
-                if project.title == 'AI-Powered Resume Parser':
-                    project.technologies.add(Skill.objects.get(name='Python'))
-                    project.technologies.add(Skill.objects.get(name='TensorFlow'))
+                if project.title == 'Threat Intelligence Platform (Phishing Detection)':
                     project.technologies.add(Skill.objects.get(name='Django'))
-                elif project.title == 'E-Learning Platform':
-                    project.technologies.add(Skill.objects.get(name='Django'))
-                    project.technologies.add(Skill.objects.get(name='React'))
-                    project.technologies.add(Skill.objects.get(name='MySQL'))
-                elif project.title == 'Smart Attendance System':
+                    project.technologies.add(Skill.objects.get(name='Scikit-learn'))
                     project.technologies.add(Skill.objects.get(name='Python'))
+                    project.technologies.add(Skill.objects.get(name='PostgreSQL'))
+                elif project.title == 'IsharaX (Gesture Control System)':
                     project.technologies.add(Skill.objects.get(name='OpenCV'))
-                    project.technologies.add(Skill.objects.get(name='Django'))
-                elif project.title == 'Weather Forecast API':
+                    project.technologies.add(Skill.objects.get(name='Python'))
+                    try:
+                        project.technologies.add(Skill.objects.get(name='MediaPipe'))
+                    except Skill.DoesNotExist:
+                        pass
+                elif project.title == 'RasoiRack (Recipe Management System)':
                     project.technologies.add(Skill.objects.get(name='Django'))
                     project.technologies.add(Skill.objects.get(name='Python'))
-                    project.technologies.add(Skill.objects.get(name='MySQL'))
-                elif project.title == 'Task Management App':
-                    project.technologies.add(Skill.objects.get(name='React'))
-                    project.technologies.add(Skill.objects.get(name='Django'))
-                    project.technologies.add(Skill.objects.get(name='JavaScript'))
-                elif project.title == 'Data Visualization Dashboard':
-                    project.technologies.add(Skill.objects.get(name='React'))
-                    project.technologies.add(Skill.objects.get(name='JavaScript'))
-                    project.technologies.add(Skill.objects.get(name='Node.js'))
+                    project.technologies.add(Skill.objects.get(name='SQLite'))
                 
                 self.stdout.write(f'Created project: {project.title}')
 
-        # Create education (no work experience for fresher)
+        # Create experience
+        experience_data = [
+            {
+                'company': 'Codesoft',
+                'position': 'Web Developer Intern',
+                'description': 'Crafted responsive and interactive UIs with React and modern CSS3, improving user accessibility and engagement across devices. Engineered scalable RESTful APIs with Django Rest Framework, enabling seamless front-end to back-end communication and implementing comprehensive CRUD operations. Utilized Git and GitHub for version control within an Agile/Scrum framework, managing codebase, reviewing pull requests, and resolving merge conflicts. Reduced critical errors by over 20%.',
+                'start_date': date(2025, 2, 1),
+                'end_date': date(2025, 3, 31),
+                'current': False,
+                'location': 'Remote',
+            },
+        ]
+
+        for exp_data in experience_data:
+            experience, created = Experience.objects.get_or_create(
+                company=exp_data['company'],
+                position=exp_data['position'],
+                start_date=exp_data['start_date'],
+                defaults=exp_data
+            )
+            if created:
+                # Add relevant skills to experience
+                experience.technologies.add(Skill.objects.get(name='React'))
+                experience.technologies.add(Skill.objects.get(name='Django'))
+                experience.technologies.add(Skill.objects.get(name='CSS3'))
+                experience.technologies.add(Skill.objects.get(name='Git'))
+                experience.technologies.add(Skill.objects.get(name='GitHub'))
+                self.stdout.write(f'Created experience: {experience.position} at {experience.company}')
+
+        # Create education matching resume
         education_data = [
             {
                 'institution': 'Noida Institute of Engineering and Technology',
-                'degree': 'Bachelor of Technology',
+                'degree': 'B.Tech - Computer Science and Engineering (AI)',
                 'field_of_study': 'Computer Science and Engineering (AI)',
-                'start_date': date(2020, 8, 1),
-                'end_date': date(2024, 6, 30),
+                'start_date': date(2022, 8, 1),
+                'end_date': date(2026, 6, 30),
                 'current': True,
-                'description': 'Specialized in Artificial Intelligence and Machine Learning. Maintained a strong academic record while actively participating in coding competitions and hackathons. Completed coursework in Data Structures, Algorithms, Database Management, Web Development, and AI/ML.',
+                'description': 'CGPA: 7.50. Specialized in Artificial Intelligence and Machine Learning. Located in Greater Noida, Uttar Pradesh.',
             },
             {
-                'institution': 'Delhi Public School, Greater Noida',
-                'degree': 'Higher Secondary Education',
+                'institution': 'Udaya Public School',
+                'degree': 'CBSE - 12th',
                 'field_of_study': 'Science (PCM)',
-                'start_date': date(2018, 4, 1),
-                'end_date': date(2020, 3, 31),
+                'start_date': date(2020, 4, 1),
+                'end_date': date(2021, 3, 31),
                 'current': False,
-                'description': 'Completed 12th standard with distinction in Science stream. Active participant in science exhibitions and coding clubs.',
+                'description': 'Percentage: 80%. Completed 12th standard with distinction in Science stream. Located in Ayodhya, U.P.',
+            },
+            {
+                'institution': 'D.R.M Public School',
+                'degree': 'CBSE - 10th',
+                'field_of_study': 'General',
+                'start_date': date(2017, 4, 1),
+                'end_date': date(2018, 3, 31),
+                'current': False,
+                'description': 'Percentage: 90%. Completed 10th standard with excellent academic performance. Located in Ayodhya, U.P.',
             },
         ]
 
@@ -215,42 +220,49 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f'Created education: {education.degree} in {education.field_of_study}')
 
-        # Create certifications relevant for a fresher
+        # Create certifications matching resume
         certifications_data = [
             {
-                'name': 'Python Programming Certification',
+                'name': 'Python for Data Science, AI & Development',
                 'issuing_organization': 'Coursera',
-                'issue_date': date.today() - timedelta(days=180),
+                'issue_date': date(2024, 6, 1),
                 'expiry_date': None,
-                'credential_url': 'https://coursera.org/verify/python-cert',
+                'credential_url': 'https://coursera.org/verify/python-data-science',
             },
             {
-                'name': 'Machine Learning Specialization',
-                'issuing_organization': 'Stanford University (Coursera)',
-                'issue_date': date.today() - timedelta(days=120),
+                'name': 'Building AI Powered Chatbots Without Programming',
+                'issuing_organization': 'Coursera',
+                'issue_date': date(2024, 8, 1),
                 'expiry_date': None,
-                'credential_url': 'https://coursera.org/verify/ml-specialization',
+                'credential_url': 'https://coursera.org/verify/ai-chatbots',
             },
             {
-                'name': 'Web Development Bootcamp',
-                'issuing_organization': 'Udemy',
-                'issue_date': date.today() - timedelta(days=90),
+                'name': 'ReactJS',
+                'issuing_organization': 'Infosys Springboard',
+                'issue_date': date(2024, 9, 1),
                 'expiry_date': None,
-                'credential_url': 'https://udemy.com/certificate/web-dev',
+                'credential_url': 'https://infosysspringboard.com/certificate/reactjs',
             },
             {
-                'name': 'Django for Beginners',
-                'issuing_organization': 'Real Python',
-                'issue_date': date.today() - timedelta(days=60),
+                'name': 'Deep Learning for Developers',
+                'issuing_organization': 'Infosys Springboard',
+                'issue_date': date(2024, 10, 1),
                 'expiry_date': None,
-                'credential_url': 'https://realpython.com/certificate/django',
+                'credential_url': 'https://infosysspringboard.com/certificate/deep-learning',
             },
             {
-                'name': 'React Fundamentals',
-                'issuing_organization': 'Meta (Coursera)',
-                'issue_date': date.today() - timedelta(days=45),
+                'name': 'Java Programming Fundamentals',
+                'issuing_organization': 'Infosys Springboard',
+                'issue_date': date(2024, 5, 1),
                 'expiry_date': None,
-                'credential_url': 'https://coursera.org/verify/react-fundamentals',
+                'credential_url': 'https://infosysspringboard.com/certificate/java',
+            },
+            {
+                'name': 'Introduction to Artificial Intelligence (AI)',
+                'issuing_organization': 'Coursera',
+                'issue_date': date(2024, 7, 1),
+                'expiry_date': None,
+                'credential_url': 'https://coursera.org/verify/intro-ai',
             },
         ]
 
