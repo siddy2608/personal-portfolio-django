@@ -16,12 +16,17 @@ DEBUG = False
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: update this list with your domain names
+# Base allowed hosts
 ALLOWED_HOSTS = [
-    'yourdomain.com',
-    'www.yourdomain.com',
     'localhost',
     '127.0.0.1',
+    'personal-portfolio-django-8i5w.onrender.com',  # Your Render domain
 ]
+
+# Add hosts from environment variable (comma-separated)
+# This allows you to set ALLOWED_HOSTS in Render's environment variables
+if os.environ.get('ALLOWED_HOSTS'):
+    ALLOWED_HOSTS.extend([host.strip() for host in os.environ.get('ALLOWED_HOSTS').split(',')])
 
 # Security Settings
 SECURE_BROWSER_XSS_FILTER = True
@@ -63,9 +68,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # CORS settings for production
 CORS_ALLOWED_ORIGINS = [
-    "https://yourdomain.com",
-    "https://www.yourdomain.com",
+    "https://personal-portfolio-django-8i5w.onrender.com",
 ]
+
+# Add CORS origins from environment variable (comma-separated)
+if os.environ.get('CORS_ALLOWED_ORIGINS'):
+    CORS_ALLOWED_ORIGINS.extend([origin.strip() for origin in os.environ.get('CORS_ALLOWED_ORIGINS').split(',')])
 
 # Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
