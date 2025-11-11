@@ -97,6 +97,21 @@
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+            /* Performance optimizations */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        /* Optimize scroll performance - Use GPU acceleration only where needed */
+        .card, .stat-card, .project-card, .skill-card {
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+        
+        /* Only apply will-change to actively animating elements */
+        .custom-cursor, .cursor-dot {
+            will-change: transform;
         }
 
         /* Hide default cursor on all elements for desktop */
@@ -887,6 +902,12 @@
         .pulse { animation: pulse 2s ease-in-out infinite; }
         .glow { animation: glow 2s ease-in-out infinite; }
         
+        /* Performance optimized fade-in */
+        .fade-in-visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
         .text-gradient {
             background: var(--gradient-accent);
             -webkit-background-clip: text;
@@ -1512,17 +1533,57 @@
             }, 100);
         }
 
+        // Optimized Scroll Handler - Single throttled handler for all scroll effects
+        let scrollTicking = false;
+        let lastScrollY = 0;
+        
+        function optimizedScrollHandler() {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.pageYOffset || window.scrollY;
+                    
+                    // Scroll Progress Indicator
+                    const progressBar = document.querySelector('.scroll-progress');
+                    if (progressBar) {
+                        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+                        const scrolled = (scrollY / windowHeight) * 100;
+                        progressBar.style.width = scrolled + '%';
+                    }
+                    
+                    // Scroll to Top Button
+                    const scrollBtn = document.querySelector('.scroll-to-top');
+                    if (scrollBtn) {
+                        if (scrollY > 300) {
+                            scrollBtn.classList.add('visible');
+                        } else {
+                            scrollBtn.classList.remove('visible');
+                        }
+                    }
+                    
+                    // Navbar scroll effect (only update if changed significantly)
+                    if (Math.abs(scrollY - lastScrollY) > 5) {
+                        const navbar = document.querySelector('.navbar');
+                        if (navbar) {
+                            if (scrollY > 50) {
+                                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                            } else {
+                                navbar.style.background = 'rgba(30, 30, 30, 0.8)';
+                            }
+                        }
+                        lastScrollY = scrollY;
+                    }
+                    
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
+            }
+        }
+
         // Scroll Progress Indicator
         function initScrollProgress() {
             const progressBar = document.createElement('div');
             progressBar.className = 'scroll-progress';
             document.body.appendChild(progressBar);
-            
-            window.addEventListener('scroll', () => {
-                const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrolled = (window.scrollY / windowHeight) * 100;
-                progressBar.style.width = scrolled + '%';
-            });
         }
 
         // Scroll to Top Button
@@ -1531,14 +1592,6 @@
             scrollBtn.className = 'scroll-to-top';
             scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
             document.body.appendChild(scrollBtn);
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    scrollBtn.classList.add('visible');
-                } else {
-                    scrollBtn.classList.remove('visible');
-                }
-            });
             
             scrollBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1634,29 +1687,34 @@
             });
         }
 
-        // Parallax Effect
+        // Parallax Effect - Optimized with throttling
+        let parallaxElements = [];
+        let parallaxTicking = false;
+        
         function initParallax() {
-            const parallaxElements = document.querySelectorAll('.hero-visual, .code-window, .floating-element');
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                parallaxElements.forEach((el, index) => {
-                    const speed = 0.5 + (index * 0.1);
-                    el.style.transform = `translateY(${scrolled * speed}px)`;
-                });
+            parallaxElements = Array.from(document.querySelectorAll('.hero-visual, .code-window, .floating-element'));
+            if (parallaxElements.length === 0) return;
+            
+            // Use CSS transforms for better performance
+            parallaxElements.forEach((el, index) => {
+                el.style.willChange = 'transform';
+                el.dataset.speed = (0.5 + (index * 0.1)).toString();
             });
         }
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-                navbar.style.backdropFilter = 'blur(20px)';
-            } else {
-                navbar.style.background = 'rgba(30, 30, 30, 0.8)';
-                navbar.style.backdropFilter = 'blur(20px)';
+        
+        function updateParallax() {
+            if (!parallaxTicking && parallaxElements.length > 0) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset || window.scrollY;
+                    parallaxElements.forEach((el) => {
+                        const speed = parseFloat(el.dataset.speed) || 0.5;
+                        el.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
+                    });
+                    parallaxTicking = false;
+                });
+                parallaxTicking = true;
             }
-        });
+        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1672,38 +1730,46 @@
             });
         });
 
-        // Enhanced Intersection Observer for animations
+        // Enhanced Intersection Observer for animations - Optimized
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.05, // Reduced threshold for earlier trigger
+            rootMargin: '0px 0px -100px 0px' // Increased margin for better performance
         };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    
-                    // Animate counters when stats come into view
-                    if (entry.target.classList.contains('stat-card')) {
-                        const statNumber = entry.target.querySelector('.stat-number');
-                        if (statNumber && !statNumber.dataset.animated) {
-                            const text = statNumber.textContent.trim();
-                            // Extract number and preserve suffix
-                            const match = text.match(/(\d+)([+\/%]?)/);
-                            if (match) {
-                                const number = parseInt(match[1]);
-                                const suffix = match[2] || '';
-                                statNumber.dataset.animated = 'true';
-                                statNumber.textContent = '0' + suffix;
-                                // Add a small delay for better visual effect
-                                setTimeout(() => {
-                                    animateCounter(statNumber, number, 2000);
-                                }, 300);
+            // Use requestAnimationFrame for smooth updates
+            requestAnimationFrame(() => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Use CSS classes instead of inline styles for better performance
+                        entry.target.classList.add('fade-in-visible');
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        
+                        // Animate counters when stats come into view
+                        if (entry.target.classList.contains('stat-card')) {
+                            const statNumber = entry.target.querySelector('.stat-number');
+                            if (statNumber && !statNumber.dataset.animated) {
+                                const text = statNumber.textContent.trim();
+                                // Extract number and preserve suffix
+                                const match = text.match(/(\d+)([+\/%]?)/);
+                                if (match) {
+                                    const number = parseInt(match[1]);
+                                    const suffix = match[2] || '';
+                                    statNumber.dataset.animated = 'true';
+                                    statNumber.textContent = '0' + suffix;
+                                    // Add a small delay for better visual effect
+                                    setTimeout(() => {
+                                        animateCounter(statNumber, number, 2000);
+                                    }, 300);
+                                }
                             }
                         }
+                        
+                        // Unobserve after animation to reduce overhead
+                        observer.unobserve(entry.target);
                     }
-                }
+                });
             });
         }, observerOptions);
 
@@ -1722,23 +1788,32 @@
             initRippleEffect();
             initParallax();
             
-            // Observe elements for animation
-            const animatedElements = document.querySelectorAll('.card, .stat-card, .section-header, .hero-content, .hero-visual');
-            animatedElements.forEach((el, index) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
-                observer.observe(el);
-            });
-
-            // Add stagger animation to cards
-            const cards = document.querySelectorAll('.project-card, .skill-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px) scale(0.95)';
-                card.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
-                observer.observe(card);
-            });
+            // Single optimized scroll event listener with passive option
+            window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+            window.addEventListener('scroll', updateParallax, { passive: true });
+            
+            // Observe elements for animation - Batch processing for better performance
+            const animatedElements = document.querySelectorAll('.card, .stat-card, .section-header, .hero-content, .hero-visual, .project-card, .skill-card');
+            
+            // Use requestIdleCallback if available for non-critical animations
+            const observeElements = () => {
+                animatedElements.forEach((el, index) => {
+                    // Only set initial state if not already visible
+                    if (!el.classList.contains('fade-in-visible')) {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(30px)';
+                        el.style.transition = `opacity 0.6s ease-out, transform 0.6s ease-out`;
+                        observer.observe(el);
+                    }
+                });
+            };
+            
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(observeElements, { timeout: 2000 });
+            } else {
+                // Fallback for browsers without requestIdleCallback
+                setTimeout(observeElements, 100);
+            }
         });
     </script>
     
