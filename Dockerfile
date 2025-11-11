@@ -31,6 +31,9 @@ RUN mkdir -p logs
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
+# Make startup script executable
+RUN chmod +x /app/start.sh
+
 # Create non-root user
 RUN adduser --disabled-password --gecos '' appuser
 RUN chown -R appuser:appuser /app
@@ -43,6 +46,6 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/ || exit 1
 
-# Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120", "portfolio_django.wsgi:application"]
+# Run the application using startup script
+CMD ["/app/start.sh"]
 
