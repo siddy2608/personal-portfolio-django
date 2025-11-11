@@ -20,6 +20,13 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
     
     <style>
+        /* Hide cursor immediately on desktop before JS loads */
+        @media (min-width: 769px) and (hover: hover) {
+            html, body {
+                cursor: none !important;
+            }
+        }
+        
         :root {
             /* New Color Palette - Dark Theme */
             --bg-primary: #0a0a0a;
@@ -92,9 +99,22 @@
             position: relative;
         }
 
+        /* Hide default cursor on all elements for desktop */
         @media (min-width: 769px) {
-            body {
-                cursor: none; /* Hide default cursor for custom cursor on desktop */
+            html, body, * {
+                cursor: none !important;
+            }
+            
+            /* Ensure all interactive elements also hide cursor */
+            a, button, input, select, textarea, .btn, .card, .navbar, .nav-link, 
+            .social-link, .scroll-to-top, [role="button"], [onclick], 
+            .stat-card, .project-card, .skill-card, img, svg {
+                cursor: none !important;
+            }
+            
+            /* Text selection should still work but without cursor */
+            ::selection {
+                cursor: none !important;
             }
         }
 
@@ -1690,8 +1710,11 @@
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize custom features
-            if (window.innerWidth > 768) {
+            if (window.innerWidth > 768 && window.matchMedia('(hover: hover)').matches) {
                 initCustomCursor();
+                // Force hide default cursor immediately
+                document.body.style.cursor = 'none';
+                document.documentElement.style.cursor = 'none';
             }
             initScrollProgress();
             initScrollToTop();
