@@ -1,0 +1,369 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Contact | Siddharth{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="min-height: 60vh; display: flex; align-items: center; position: relative; overflow: hidden;">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <div class="hero-content">
+                    <!-- Status Badge -->
+                    <div class="status-badge glass" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--radius-full); margin-bottom: var(--spacing-md);">
+                        <div style="width: 8px; height: 8px; background: var(--accent-success); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                        <span style="font-size: 14px; color: var(--text-secondary);">Available for Internships</span>
+                    </div>
+                    
+                    <!-- Main Heading -->
+                    <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; margin-bottom: var(--spacing-md);">
+                        Let's <span class="text-gradient">Connect</span>
+                    </h1>
+                    
+                    <!-- Description -->
+                    <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        I'm actively seeking internship opportunities and exciting projects. Let's discuss how we can collaborate and create something amazing!
+                    </p>
+                    
+                    <!-- Stats -->
+                    <div class="stats-container" style="margin-bottom: var(--spacing-xl);">
+                        <div class="stat-card">
+                            <div class="stat-number">2h</div>
+                            <div class="stat-label">Response Time</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Learning Focus</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Availability</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col-lg-8 mb-4">
+                <div class="glass" style="padding: var(--spacing-xl); border-radius: var(--radius-xl); height: 100%;">
+                    <h2 style="color: var(--text-primary); margin-bottom: var(--spacing-lg); font-size: 2rem;">Send me a message</h2>
+                    
+                    <form id="contactForm" method="post" style="display: grid; gap: var(--spacing-md);">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div style="margin-bottom: var(--spacing-md);">
+                                    <label for="name" style="display: block; margin-bottom: var(--spacing-xs); color: var(--text-primary); font-weight: 600;">Name *</label>
+                                    <input type="text" id="name" name="name" required 
+                                           style="width: 100%; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); color: var(--text-primary); font-size: 14px; transition: all var(--transition-normal);"
+                                           placeholder="Your full name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="margin-bottom: var(--spacing-md);">
+                                    <label for="email" style="display: block; margin-bottom: var(--spacing-xs); color: var(--text-primary); font-weight: 600;">Email *</label>
+                                    <input type="email" id="email" name="email" required 
+                                           style="width: 100%; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); color: var(--text-primary); font-size: 14px; transition: all var(--transition-normal);"
+                                           placeholder="your.email@example.com">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: var(--spacing-md);">
+                            <label for="subject" style="display: block; margin-bottom: var(--spacing-xs); color: var(--text-primary); font-weight: 600;">Subject *</label>
+                            <input type="text" id="subject" name="subject" required 
+                                   style="width: 100%; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); color: var(--text-primary); font-size: 14px; transition: all var(--transition-normal);"
+                                   placeholder="What's this about?">
+                        </div>
+                        
+                        <div style="margin-bottom: var(--spacing-md);">
+                            <label for="message" style="display: block; margin-bottom: var(--spacing-xs); color: var(--text-primary); font-weight: 600;">Message *</label>
+                            <textarea id="message" name="message" rows="6" required 
+                                      style="width: 100%; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); color: var(--text-primary); font-size: 14px; resize: vertical; transition: all var(--transition-normal);"
+                                      placeholder="Tell me about your project or opportunity..."></textarea>
+                            <div style="text-align: right; margin-top: var(--spacing-xs);">
+                                <span id="charCount" style="color: var(--text-muted); font-size: 12px;">0 characters</span>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-primary" style="padding: 12px 32px; font-size: 16px;">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Contact Info Sidebar -->
+            <div class="col-lg-4">
+                <div class="glass" style="padding: var(--spacing-xl); border-radius: var(--radius-xl); height: 100%; position: sticky; top: 20px;">
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--spacing-lg); font-size: 1.5rem;">Get in touch</h3>
+                    
+                    <!-- Contact Methods -->
+                    <div style="display: grid; gap: var(--spacing-lg);">
+                        <!-- Email -->
+                        <div style="display: flex; align-items: center; gap: var(--spacing-md); padding: var(--spacing-md); background: rgba(0, 212, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.1);">
+                            <div style="width: 48px; height: 48px; background: var(--gradient-accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 20px; flex-shrink: 0;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs); font-size: 1rem;">Email</h4>
+                                <a href="mailto:siddharthmishr125@gmail.com" style="color: var(--accent-primary); text-decoration: none; font-size: 0.9rem;">siddharthmishr125@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Phone -->
+                        <div style="display: flex; align-items: center; gap: var(--spacing-md); padding: var(--spacing-md); background: rgba(255, 107, 157, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 107, 157, 0.1);">
+                            <div style="width: 48px; height: 48px; background: var(--gradient-secondary); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 20px; flex-shrink: 0;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs); font-size: 1rem;">Phone</h4>
+                                <a href="tel:+919936057425" style="color: var(--accent-primary); text-decoration: none; font-size: 0.9rem;">+91 9936057425</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Location -->
+                        <div style="display: flex; align-items: center; gap: var(--spacing-md); padding: var(--spacing-md); background: rgba(124, 58, 237, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(124, 58, 237, 0.1);">
+                            <div style="width: 48px; height: 48px; background: var(--gradient-primary); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 20px; flex-shrink: 0;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs); font-size: 1rem;">Location</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Greater Noida, Uttar Pradesh</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div style="margin-top: var(--spacing-xl);">
+                        <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-md); font-size: 1.1rem;">Follow me</h4>
+                        <div style="display: flex; gap: var(--spacing-sm);">
+                            <a href="https://github.com/siddharth-mishra" target="_blank" class="social-link" style="width: 48px; height: 48px;">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/siddharth-mishra" target="_blank" class="social-link" style="width: 48px; height: 48px;">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:siddharthmishr125@gmail.com" class="social-link" style="width: 48px; height: 48px;">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Common questions about working with me</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card" style="padding: var(--spacing-lg); height: 100%;">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm); font-size: 1.1rem;">
+                        <i class="fas fa-clock me-2" style="color: var(--accent-primary);"></i>
+                        What's your response time?
+                    </h4>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">I typically respond within 24 hours, often much sooner. For urgent matters, feel free to call or text me directly.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="card" style="padding: var(--spacing-lg); height: 100%;">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm); font-size: 1.1rem;">
+                        <i class="fas fa-calendar me-2" style="color: var(--accent-primary);"></i>
+                        Are you available for internships?
+                    </h4>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Yes! I'm actively seeking internship opportunities in Python development, AI/ML, and full-stack development roles.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="card" style="padding: var(--spacing-lg); height: 100%;">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm); font-size: 1.1rem;">
+                        <i class="fas fa-code me-2" style="color: var(--accent-primary);"></i>
+                        What technologies do you work with?
+                    </h4>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">I specialize in Python, Django, React, and machine learning technologies like TensorFlow and Scikit-learn.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="card" style="padding: var(--spacing-lg); height: 100%;">
+                    <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm); font-size: 1.1rem;">
+                        <i class="fas fa-map-marker-alt me-2" style="color: var(--accent-primary);"></i>
+                        Do you work remotely?
+                    </h4>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Yes, I'm comfortable with remote work and have experience collaborating with teams across different time zones.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="glass" style="padding: var(--spacing-2xl); border-radius: var(--radius-xl);">
+                    <h2 style="color: var(--text-primary); margin-bottom: var(--spacing-md);">Ready to start a project?</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
+                        I'm excited to hear about your ideas and help bring them to life. Let's create something amazing together!
+                    </p>
+                    
+                    <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                        <a href="#contactForm" class="btn btn-primary">
+                            <i class="fas fa-rocket me-2"></i>Start Your Project
+                        </a>
+                        <a href="{% url 'projects' %}" class="btn btn-secondary">
+                            <i class="fas fa-eye me-2"></i>View My Work
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const messageTextarea = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    const contactForm = document.getElementById('contactForm');
+    
+    // Character counter
+    messageTextarea.addEventListener('input', function() {
+        const length = this.value.length;
+        charCount.textContent = length + ' characters';
+        
+        if (length > 1000) {
+            charCount.style.color = 'var(--accent-error)';
+        } else if (length > 500) {
+            charCount.style.color = 'var(--accent-warning)';
+        } else {
+            charCount.style.color = 'var(--text-muted)';
+        }
+    });
+    
+    // Form submission enhancement
+    contactForm.addEventListener('submit', function(e) {
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form processing (remove this in production)
+        setTimeout(() => {
+            submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
+            submitBtn.style.background = 'var(--accent-success)';
+            
+            // Show notification info
+            const notificationInfo = document.createElement('div');
+            notificationInfo.style.cssText = `
+                background: rgba(0, 212, 255, 0.1);
+                border: 1px solid rgba(0, 212, 255, 0.2);
+                border-radius: var(--radius-lg);
+                padding: var(--spacing-md);
+                margin-top: var(--spacing-md);
+                text-align: center;
+                color: var(--text-secondary);
+            `;
+            notificationInfo.innerHTML = `
+                <i class="fas fa-bell me-2"></i>
+                <strong>Notifications sent!</strong><br>
+                <small>You'll receive a confirmation email, and I'll get notified immediately.</small>
+            `;
+            
+            contactForm.appendChild(notificationInfo);
+            
+            // Reset form
+            setTimeout(() => {
+                contactForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.background = '';
+                charCount.textContent = '0 characters';
+                if (notificationInfo.parentNode) {
+                    notificationInfo.remove();
+                }
+            }, 3000);
+        }, 1500);
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+</script>
+
+<style>
+.hero-title {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-content {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.social-link {
+    transition: all var(--transition-normal);
+}
+
+.social-link:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent-primary);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+</style>
+{% endblock %}

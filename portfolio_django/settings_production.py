@@ -1,0 +1,163 @@
+"""
+Production settings for portfolio_django project.
+"""
+
+import os
+from pathlib import Path
+from .settings import *
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+# SECURITY WARNING: update this list with your domain names
+ALLOWED_HOSTS = [
+    'yourdomain.com',
+    'www.yourdomain.com',
+    'localhost',
+    '127.0.0.1',
+]
+
+# Security Settings
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_REDIRECT_EXEMPT = []
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
+
+# Database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'portfolio_db'),
+        'USER': os.environ.get('DB_USER', 'portfolio_user'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
+    }
+}
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# CORS settings for production
+CORS_ALLOWED_ORIGINS = [
+    "https://yourdomain.com",
+    "https://www.yourdomain.com",
+]
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
+
+# Twilio SMS Configuration
+TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = os.environ.get('TWILIO_PHONE_NUMBER')
+RECIPIENT_PHONE_NUMBER = os.environ.get('YOUR_PHONE_NUMBER')
+
+# Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'django.log',
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'root': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'core': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+# Cache Configuration
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379/1'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
+# Session Configuration
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+
+# Rate Limiting
+RATELIMIT_ENABLE = True
+RATELIMIT_USE_CACHE = 'default'
+
+# File Upload Security
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+FILE_UPLOAD_PERMISSIONS = 0o644
+FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
+
+# Allowed file types for uploads
+ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+ALLOWED_DOCUMENT_TYPES = ['application/pdf', 'application/msword', 
+                          'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+
+# Maximum file sizes
+MAX_IMAGE_SIZE = 5 * 1024 * 1024  # 5MB
+MAX_DOCUMENT_SIZE = 10 * 1024 * 1024  # 10MB
+

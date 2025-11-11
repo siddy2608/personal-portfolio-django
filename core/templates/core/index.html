@@ -1,0 +1,1375 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Siddharth | Python Developer{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" id="hero" role="banner">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <!-- Status Badge -->
+                    <div class="status-badge glass" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--radius-full); margin-bottom: var(--spacing-md);">
+                        <div style="width: 8px; height: 8px; background: var(--accent-success); border-radius: 50%; animation: pulse 2s infinite;" aria-hidden="true"></div>
+                        <span style="font-size: 14px; color: var(--text-secondary);">Fresh Graduate | Seeking Opportunities</span>
+                    </div>
+                    
+                    <!-- Main Heading -->
+                    <h1 class="hero-title">
+                        <span class="greeting-text">Hi, I'm</span> 
+                        <span class="name-text text-gradient split-text-container">SIDDHARTH MISHRA</span>
+                    </h1>
+                    
+                    <!-- Value Statement -->
+                    <p class="value-statement" style="font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--accent-primary); margin-bottom: var(--spacing-sm); font-weight: 500;">
+                        Building scalable web applications and AI solutions for modern businesses
+                    </p>
+                    
+                    <!-- Role -->
+                    <h2 class="role-text">
+                        Python Developer — Full-Stack & AI
+                    </h2>
+                    
+                    <!-- Description -->
+                    <p class="description-text">
+                        Specialized in Django, React, and Machine Learning. Fresh B.Tech graduate in Computer Science and Engineering (AI) seeking opportunities to apply my skills and grow professionally.
+                    </p>
+                    
+                    <!-- Stats -->
+                    <div class="stats-container">
+                        <a href="#skills" class="stat-card stat-link" tabindex="0" aria-label="View 25+ Technologies">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Technologies</div>
+                        </a>
+                        <a href="{% url 'projects' %}" class="stat-card stat-link" tabindex="0" aria-label="View 3+ Projects Built">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Projects Built</div>
+                        </a>
+                        <div class="stat-card">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="cta-buttons" style="display: flex; gap: var(--spacing-md); flex-wrap: wrap; margin-bottom: var(--spacing-lg);">
+                        <a href="{% url 'projects' %}" class="btn btn-primary" aria-label="View my portfolio projects">
+                            <i class="fas fa-rocket me-2" aria-hidden="true"></i>View My Work
+                        </a>
+                        <a href="{% url 'contact' %}" class="btn btn-secondary" aria-label="Get in touch with me">
+                            <i class="fas fa-paper-plane me-2" aria-hidden="true"></i>Get In Touch
+                        </a>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div style="display: flex; gap: var(--spacing-sm);">
+                        <a href="https://github.com/siddharth-mishra" target="_blank" class="social-link" style="width: 48px; height: 48px;" data-tooltip="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/siddharth-mishra" target="_blank" class="social-link" style="width: 48px; height: 48px;" data-tooltip="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:siddharthmishr125@gmail.com" class="social-link" style="width: 48px; height: 48px;" data-tooltip="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+919936057425" class="social-link" style="width: 48px; height: 48px;" data-tooltip="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="hero-visual">
+                    <!-- Animated Code Window -->
+                    <div class="code-window glass" role="region" aria-label="Code snippet showcasing developer information">
+                        <!-- Animated Background Elements -->
+                        <div class="code-bg-particles"></div>
+                        <div class="code-bg-grid"></div>
+                        <div class="code-bg-gradient"></div>
+                        
+                        <!-- Window Header -->
+                        <div class="code-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-md); position: relative; z-index: 2;">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div class="window-dot window-dot-close" style="width: 12px; height: 12px; background: var(--accent-error); border-radius: 50%; transition: all 0.3s ease;"></div>
+                                <div class="window-dot window-dot-minimize" style="width: 12px; height: 12px; background: var(--accent-warning); border-radius: 50%; transition: all 0.3s ease;"></div>
+                                <div class="window-dot window-dot-maximize" style="width: 12px; height: 12px; background: var(--accent-success); border-radius: 50%; transition: all 0.3s ease;"></div>
+                                <span style="color: var(--text-secondary); font-size: 14px; margin-left: var(--spacing-sm); font-weight: 500;">siddharth.py</span>
+                            </div>
+                            <button class="code-copy-btn" style="background: transparent; border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary); padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; font-size: 12px; transition: all var(--transition-normal); position: relative; z-index: 2;" onclick="copyCode()" data-tooltip="Copy Code" aria-label="Copy code to clipboard">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Code Content -->
+                        <div class="code-content-wrapper" style="display: flex; text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.6; position: relative; z-index: 2;">
+                            <!-- Line Numbers -->
+                            <div class="code-line-numbers" style="color: var(--text-muted); margin-right: var(--spacing-md); user-select: none; text-align: right; opacity: 0.6;">
+                                <div style="margin-bottom: 8px;">1</div>
+                                <div style="margin-bottom: 8px;">2</div>
+                                <div style="margin-bottom: 8px;">3</div>
+                                <div style="margin-bottom: 8px;">4</div>
+                                <div style="margin-bottom: 8px;">5</div>
+                                <div style="margin-bottom: 8px;">6</div>
+                                <div style="margin-bottom: 8px;">7</div>
+                                <div style="margin-top: var(--spacing-md);">8</div>
+                            </div>
+                            
+                            <!-- Code -->
+                            <div style="flex: 1;" id="code-content">
+                                <div style="color: var(--accent-primary); margin-bottom: 8px;" class="code-line">
+                                    <span style="color: var(--accent-secondary);">class</span> Developer:
+                                </div>
+                                <div style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 8px;" class="code-line">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;name = <span style="color: var(--accent-tertiary);">'SIDDHARTH MISHRA'</span>
+                                </div>
+                                <div style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 8px;" class="code-line">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;role = <span style="color: var(--accent-tertiary);">'Python Developer - Full-Stack & AI'</span>
+                                </div>
+                                <div style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 8px;" class="code-line">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;skills = [<span style="color: var(--accent-tertiary);">'Python'</span>, <span style="color: var(--accent-tertiary);">'Django'</span>, <span style="color: var(--accent-tertiary);">'React'</span>, <span style="color: var(--accent-tertiary);">'ML'</span>]
+                                </div>
+                                <div style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 8px;" class="code-line">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;education = <span style="color: var(--accent-tertiary);">'B.Tech CSE (AI)'</span>
+                                </div>
+                                <div style="color: var(--text-secondary); margin-left: 20px; margin-bottom: 8px;" class="code-line">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;status = <span style="color: var(--accent-tertiary);">'Fresh Graduate'</span>
+                                </div>
+                                <div style="color: var(--accent-primary); margin-bottom: 8px;" class="code-line">}</div>
+                                <div style="color: var(--text-secondary); margin-top: var(--spacing-md);" class="code-line">
+                                    <span style="color: var(--accent-secondary);">print</span>(<span style="color: var(--accent-tertiary);">'Ready to build amazing things!'</span>)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Animated Cursor -->
+                        <div class="code-cursor" style="position: absolute; bottom: 20px; right: 20px; width: 2px; height: 20px; background: var(--accent-primary); animation: blink 1s infinite; z-index: 2;"></div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="floating-element" style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: var(--gradient-accent); border-radius: var(--radius-full); opacity: 0.3; animation: float 4s ease-in-out infinite;"></div>
+                    <div class="floating-element" style="position: absolute; bottom: -30px; left: -30px; width: 80px; height: 80px; background: var(--gradient-secondary); border-radius: var(--radius-full); opacity: 0.2; animation: float 6s ease-in-out infinite reverse;"></div>
+                    <div class="floating-element" style="position: absolute; top: 50%; right: -40px; width: 50px; height: 50px; background: var(--accent-tertiary); border-radius: var(--radius-full); opacity: 0.25; animation: float 5s ease-in-out infinite; animation-delay: 2s;"></div>
+                    <div class="floating-element" style="position: absolute; bottom: 20%; right: 10%; width: 40px; height: 40px; background: var(--accent-primary); border-radius: var(--radius-full); opacity: 0.2; animation: float 7s ease-in-out infinite reverse; animation-delay: 1s;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" id="scrollIndicator" aria-label="Scroll to next section" tabindex="0" role="button">
+            <div class="scroll-arrow"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Divider -->
+<div class="section-divider"></div>
+
+<!-- Featured Projects Section -->
+<section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">A showcase of my latest work and innovative solutions</p>
+        </div>
+        
+        <div class="row">
+            {% for project in featured_projects %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 project-card" style="position: relative; overflow: hidden;">
+                    <!-- Project Image/Icon -->
+                    <div style="height: 200px; background: var(--gradient-dark); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                        <i class="fas fa-{% if project.category == 'web' %}globe{% elif project.category == 'mobile' %}mobile-alt{% elif project.category == 'ai' %}brain{% elif project.category == 'api' %}server{% else %}code{% endif %}" style="font-size: 64px; color: var(--accent-primary); z-index: 1;"></i>
+                        
+                        <!-- Animated Background -->
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1;">
+                            <div style="position: absolute; top: 10%; left: 10%; width: 100px; height: 100px; background: var(--accent-primary); border-radius: 50%; filter: blur(40px); animation: float 4s ease-in-out infinite;"></div>
+                            <div style="position: absolute; bottom: 20%; right: 15%; width: 150px; height: 150px; background: var(--accent-secondary); border-radius: 50%; filter: blur(60px); animation: float 6s ease-in-out infinite reverse;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body" style="padding: var(--spacing-lg);">
+                        <!-- Category Badge -->
+                        <div style="margin-bottom: var(--spacing-sm);">
+                            <span style="background: rgba(0, 212, 255, 0.1); color: var(--accent-primary); padding: 6px 12px; border-radius: var(--radius-full); font-size: 12px; font-weight: 600; text-transform: uppercase;">
+                                {{ project.get_category_display }}
+                            </span>
+                        </div>
+                        
+                        <!-- Project Title -->
+                        <h4 style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: var(--spacing-sm);">{{ project.title }}</h4>
+                        
+                        <!-- Project Description -->
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); line-height: 1.6;">
+                            {{ project.description|truncatewords:25 }}
+                        </p>
+                        
+                        <!-- Project Links -->
+                        <div style="display: flex; gap: var(--spacing-sm);">
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" target="_blank" class="btn btn-ghost" style="flex: 1; padding: 8px 16px; font-size: 14px;">
+                                <i class="fab fa-github me-1"></i>Code
+                            </a>
+                            {% endif %}
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" target="_blank" class="btn btn-primary" style="flex: 1; padding: 8px 16px; font-size: 14px;">
+                                <i class="fas fa-external-link-alt me-1"></i>Live
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center" style="padding: var(--spacing-2xl);">
+                <div style="width: 120px; height: 120px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg); color: var(--text-muted);">
+                    <i class="fas fa-folder-open" style="font-size: 48px;"></i>
+                </div>
+                <h3 style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">No featured projects yet</h3>
+                <p style="color: var(--text-muted);">Check back soon for amazing projects!</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center" style="margin-top: var(--spacing-xl);">
+            <a href="{% url 'projects' %}" class="btn btn-secondary">
+                <i class="fas fa-eye me-2"></i>View All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Section Divider -->
+<div class="section-divider"></div>
+
+<!-- Skills Section -->
+<section class="section" id="skills">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">Technologies and tools I work with to bring ideas to life</p>
+        </div>
+        
+        <div class="row">
+            {% for skill in skills %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card skill-card text-center" style="padding: var(--spacing-lg); height: 100%;">
+                    <!-- Skill Icon -->
+                    <div style="width: 64px; height: 64px; background: var(--gradient-accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-md); color: var(--text-primary); font-size: 24px;">
+                        <i class="{{ skill.icon|default:'fas fa-code' }}"></i>
+                    </div>
+                    
+                    <!-- Skill Name -->
+                    <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary); margin-bottom: var(--spacing-sm);">{{ skill.name }}</h4>
+                    
+                    <!-- Skill Category -->
+                    <p style="color: var(--accent-primary); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: var(--spacing-sm);">{{ skill.get_category_display }}</p>
+                    
+                    <!-- Progress Bar -->
+                    <div style="background: var(--bg-secondary); height: 6px; border-radius: var(--radius-full); overflow: hidden; margin-bottom: var(--spacing-sm);">
+                        <div style="background: var(--gradient-accent); height: 100%; width: {{ skill.proficiency }}%; border-radius: var(--radius-full); position: relative;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: shimmer 2s ease-in-out infinite;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proficiency -->
+                    <span style="color: var(--text-secondary); font-size: 14px; font-weight: 600;">{{ skill.proficiency }}%</span>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center" style="padding: var(--spacing-2xl);">
+                <div style="width: 120px; height: 120px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg); color: var(--text-muted);">
+                    <i class="fas fa-tools" style="font-size: 48px;"></i>
+                </div>
+                <h3 style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">Skills coming soon</h3>
+                <p style="color: var(--text-muted);">My technical skills will be displayed here!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Section Divider -->
+<div class="section-divider"></div>
+
+<!-- Experience Section - Fresher -->
+<section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Seeking Opportunities</h2>
+            <p class="section-subtitle">Fresh graduate ready to contribute and grow</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card" style="padding: var(--spacing-xl); text-align: center; border-left: 4px solid var(--accent-primary);">
+                    <div style="width: 120px; height: 120px; background: var(--gradient-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg); color: var(--text-primary); font-size: 48px;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--spacing-md);">Fresh Graduate | Ready to Start</h3>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; max-width: 600px; margin: 0 auto;">
+                        As a final year B.Tech student in Computer Science and Engineering (AI), I'm actively seeking internship opportunities and entry-level positions to apply my skills in Python, Django, React, and Machine Learning. I'm passionate about building innovative solutions and eager to contribute to real-world projects.
+                    </p>
+                    <div style="margin-top: var(--spacing-lg);">
+                        <a href="{% url 'contact' %}" class="btn btn-primary">
+                            <i class="fas fa-paper-plane me-2"></i>Let's Connect
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="glass" style="padding: var(--spacing-2xl); border-radius: var(--radius-xl);">
+                    <h2 style="color: var(--text-primary); margin-bottom: var(--spacing-md);">Ready to Start My Career Journey</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
+                        As a fresh graduate, I'm actively seeking internship opportunities and entry-level positions to kickstart my career. I'm eager to learn, contribute, and grow with a forward-thinking team. Let's connect and explore how I can add value to your organization!
+                    </p>
+                    
+                    <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                        <a href="{% url 'contact' %}" class="btn btn-primary">
+                            <i class="fas fa-rocket me-2"></i>Start Your Project
+                        </a>
+                        <a href="{% url 'about' %}" class="btn btn-secondary">
+                            <i class="fas fa-user me-2"></i>Learn More About Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+<style>
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Enhanced Code Cursor */
+.code-cursor {
+    animation: blink 1s infinite, cursorPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+@keyframes cursorPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(0, 212, 255, 0.4);
+    }
+}
+
+/* Hero Section Improvements */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: var(--spacing-2xl) 0;
+}
+
+.hero-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-visual {
+    position: relative;
+    text-align: center;
+    max-width: 100%;
+}
+
+/* Text Animation Styles */
+.greeting-text {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: wordReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes wordReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Split Text Container for Name */
+.split-text-container {
+    display: inline-block;
+    overflow: visible;
+}
+
+.split-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%) rotateX(90deg);
+    animation: splitTextReveal 0.6s cubic-bezier(0.5, 0, 0.5, 1) forwards;
+}
+
+@keyframes splitTextReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+/* Animated Gradient for Name */
+.name-text {
+    background: linear-gradient(
+        135deg,
+        var(--accent-primary) 0%,
+        var(--accent-secondary) 50%,
+        var(--accent-tertiary) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+    animation-delay: 1.5s;
+    transition: all 0.3s ease;
+    cursor: default;
+    display: inline-block;
+}
+
+.name-text:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+    animation-duration: 2s;
+}
+
+.name-text .split-char {
+    transition: transform 0.3s ease;
+}
+
+.name-text:hover .split-char {
+    transform: translateY(-5px) rotateX(10deg);
+}
+
+.name-text:hover .split-char:nth-child(even) {
+    transform: translateY(5px) rotateX(-10deg);
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+}
+
+/* Role Text Animation - Blur Reveal */
+.role-text {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateX(-30px);
+    animation: blurReveal 1s ease-out forwards;
+    animation-delay: 1.8s;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.role-text:hover {
+    transform: translateX(5px);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+@keyframes blurReveal {
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+    }
+}
+
+/* Description Text Animation - Slide with Blur */
+.description-text {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(30px);
+    animation: slideBlurReveal 1.2s ease-out forwards;
+    animation-delay: 2.2s;
+}
+
+@keyframes slideBlurReveal {
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+/* Section Title Animations */
+.section-title {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-accent);
+    opacity: 0.1;
+    animation: titleReveal 1s ease-out forwards;
+}
+
+@keyframes titleReveal {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Enhanced section header animation */
+.section-header {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: sectionHeaderReveal 0.8s ease-out forwards;
+}
+
+@keyframes sectionHeaderReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography Improvements */
+.hero-title {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.value-statement {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 1.5s;
+}
+
+.role-text {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--accent-primary);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.description-text {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.75;
+    max-width: 65ch;
+    font-weight: 400;
+    opacity: 0.95;
+}
+
+/* Code Panel Improvements */
+.code-window {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(20, 20, 30, 0.95) 0%, 
+        rgba(15, 15, 25, 0.98) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(0, 212, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Animated Background Particles */
+.code-bg-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+.code-bg-particles::before,
+.code-bg-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    box-shadow: 
+        20px 30px 0 0 rgba(0, 212, 255, 0.3),
+        40px 60px 0 0 rgba(124, 58, 237, 0.3),
+        60px 20px 0 0 rgba(0, 212, 255, 0.2),
+        80px 80px 0 0 rgba(255, 107, 157, 0.2),
+        100px 40px 0 0 rgba(0, 212, 255, 0.3),
+        120px 100px 0 0 rgba(124, 58, 237, 0.2),
+        140px 10px 0 0 rgba(0, 212, 255, 0.2),
+        160px 70px 0 0 rgba(255, 107, 157, 0.3),
+        180px 50px 0 0 rgba(0, 212, 255, 0.2),
+        200px 90px 0 0 rgba(124, 58, 237, 0.3);
+    animation: particleFloat 20s ease-in-out infinite;
+}
+
+.code-bg-particles::after {
+    animation-delay: -10s;
+    box-shadow: 
+        30px 20px 0 0 rgba(124, 58, 237, 0.3),
+        50px 70px 0 0 rgba(0, 212, 255, 0.2),
+        70px 30px 0 0 rgba(255, 107, 157, 0.3),
+        90px 90px 0 0 rgba(0, 212, 255, 0.2),
+        110px 50px 0 0 rgba(124, 58, 237, 0.3),
+        130px 10px 0 0 rgba(0, 212, 255, 0.2),
+        150px 80px 0 0 rgba(255, 107, 157, 0.2),
+        170px 40px 0 0 rgba(124, 58, 237, 0.3),
+        190px 100px 0 0 rgba(0, 212, 255, 0.2),
+        210px 60px 0 0 rgba(255, 107, 157, 0.3);
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.4;
+    }
+    25% {
+        transform: translate(10px, -15px) scale(1.1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-5px, -25px) scale(0.9);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translate(-10px, -10px) scale(1.05);
+        opacity: 0.6;
+    }
+}
+
+/* Animated Grid Background */
+.code-bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+    animation: gridMove 15s linear infinite;
+}
+
+@keyframes gridMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(30px, 30px);
+    }
+}
+
+/* Animated Gradient Background */
+.code-bg-gradient {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(0, 212, 255, 0.15) 0%,
+        transparent 50%
+    ),
+    radial-gradient(
+        circle at 70% 70%,
+        rgba(124, 58, 237, 0.1) 0%,
+        transparent 50%
+    ),
+    radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 107, 157, 0.08) 0%,
+        transparent 50%
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: gradientRotate 20s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes gradientRotate {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+    33% {
+        transform: rotate(120deg) scale(1.1);
+    }
+    66% {
+        transform: rotate(240deg) scale(0.9);
+    }
+}
+
+.code-window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.code-window code,
+.code-window pre {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 500;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+    pointer-events: none;
+}
+
+.scroll-arrow {
+    width: 30px;
+    height: 30px;
+    border-right: 2px solid var(--accent-primary);
+    border-bottom: 2px solid var(--accent-primary);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+    0%, 100% {
+        transform: rotate(45deg) translateY(0);
+    }
+    50% {
+        transform: rotate(45deg) translateY(10px);
+    }
+}
+
+/* Stat Card Links */
+.stat-link {
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-normal);
+}
+
+.stat-link:hover,
+.stat-link:focus {
+    transform: translateY(-4px);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-glow);
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.stat-link:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Button Focus States */
+.btn:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.btn-primary {
+    font-weight: 600;
+}
+
+.btn-secondary {
+    font-weight: 500;
+}
+
+/* Responsive Improvements */
+@media (max-width: 991px) {
+    .hero-section .row {
+        flex-direction: column;
+    }
+    
+    .hero-visual {
+        margin-top: var(--spacing-xl);
+        order: 2;
+    }
+    
+    .hero-content {
+        order: 1;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .code-window {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .floating-element {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 100vh;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .description-text {
+        max-width: 100%;
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .code-window {
+        padding: var(--spacing-sm);
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-visual {
+        padding-left: var(--spacing-lg);
+    }
+    
+    .code-window {
+        max-width: 550px;
+        margin-left: auto;
+    }
+}
+
+.scroll-indicator:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 4px;
+    border-radius: 50%;
+}
+
+.hero-visual {
+    animation: fadeInRight 0.8s ease-out;
+}
+
+.code-window {
+    animation: fadeInUp 1s ease-out 0.2s both;
+    position: relative;
+}
+
+/* Window Dots Hover Effects */
+.window-dot {
+    cursor: pointer;
+    position: relative;
+}
+
+.window-dot-close:hover {
+    background: var(--accent-error) !important;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+.window-dot-minimize:hover {
+    background: var(--accent-warning) !important;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+.window-dot-maximize:hover {
+    background: var(--accent-success) !important;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.code-copy-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.code-copy-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0, 212, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.code-copy-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.code-copy-btn:hover {
+    background: var(--accent-primary) !important;
+    color: var(--text-inverse) !important;
+    border-color: var(--accent-primary) !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+.code-copy-btn:active {
+    transform: scale(0.95);
+}
+
+.code-copy-btn.copied {
+    background: var(--accent-success) !important;
+    border-color: var(--accent-success) !important;
+    animation: copySuccess 0.6s ease;
+}
+
+@keyframes copySuccess {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.code-copy-btn::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+}
+
+.code-copy-btn:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.code-line {
+    opacity: 0;
+    animation: typewriter 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    position: relative;
+}
+
+.code-line::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent-primary);
+    opacity: 0;
+    animation: lineHighlight 0.3s ease-out forwards;
+}
+
+.code-line:nth-child(1) { 
+    animation-delay: 0.2s; 
+}
+.code-line:nth-child(1)::before { 
+    animation-delay: 0.4s; 
+}
+
+.code-line:nth-child(2) { 
+    animation-delay: 0.4s; 
+}
+.code-line:nth-child(2)::before { 
+    animation-delay: 0.6s; 
+}
+
+.code-line:nth-child(3) { 
+    animation-delay: 0.6s; 
+}
+.code-line:nth-child(3)::before { 
+    animation-delay: 0.8s; 
+}
+
+.code-line:nth-child(4) { 
+    animation-delay: 0.8s; 
+}
+.code-line:nth-child(4)::before { 
+    animation-delay: 1s; 
+}
+
+.code-line:nth-child(5) { 
+    animation-delay: 1s; 
+}
+.code-line:nth-child(5)::before { 
+    animation-delay: 1.2s; 
+}
+
+.code-line:nth-child(6) { 
+    animation-delay: 1.2s; 
+}
+.code-line:nth-child(6)::before { 
+    animation-delay: 1.4s; 
+}
+
+.code-line:nth-child(7) { 
+    animation-delay: 1.4s; 
+}
+.code-line:nth-child(7)::before { 
+    animation-delay: 1.6s; 
+}
+
+.code-line:nth-child(8) { 
+    animation-delay: 1.6s; 
+}
+.code-line:nth-child(8)::before { 
+    animation-delay: 1.8s; 
+}
+
+@keyframes typewriter {
+    from {
+        opacity: 0;
+        transform: translateX(-15px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes lineHighlight {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to {
+        opacity: 0.6;
+        transform: scaleY(1);
+    }
+}
+
+.code-line:hover {
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 4px;
+    padding-left: 4px;
+    margin-left: -4px;
+    transition: all 0.2s ease;
+}
+
+.floating-element {
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-element:hover {
+    transform: scale(1.2);
+    opacity: 0.5 !important;
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+}
+
+.skill-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+.experience-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+    border-left-color: var(--accent-secondary);
+}
+
+.social-link {
+    transition: all var(--transition-normal);
+}
+
+.social-link:hover {
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: var(--shadow-glow);
+}
+
+.stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .code-window {
+        margin-top: var(--spacing-lg);
+        padding: var(--spacing-sm);
+    }
+    
+    .code-bg-particles,
+    .code-bg-grid,
+    .code-bg-gradient {
+        opacity: 0.3; /* Reduce animation intensity on mobile */
+    }
+    
+    .code-line {
+        font-size: 12px;
+    }
+    
+    .code-cursor {
+        display: none; /* Hide cursor on mobile */
+    }
+
+    body {
+        cursor: auto; /* Show default cursor on mobile */
+    }
+
+    .custom-cursor,
+    .cursor-dot {
+        display: none; /* Hide custom cursor on mobile */
+    }
+}
+</style>
+
+<script>
+    // Copy Code Function
+    function copyCode() {
+        const codeContent = document.getElementById('code-content');
+        const codeText = codeContent.innerText;
+        const btn = document.querySelector('.code-copy-btn');
+        
+        // Create a more readable version of the code
+        const formattedCode = `class Developer:
+    name = 'SIDDHARTH MISHRA'
+    role = 'Python Developer - Full-Stack & AI'
+    skills = ['Python', 'Django', 'React', 'ML']
+    education = 'B.Tech CSE (AI)'
+    status = 'Fresh Graduate'
+
+print('Ready to build amazing things!')`;
+        
+        navigator.clipboard.writeText(formattedCode).then(() => {
+            const originalHTML = btn.innerHTML;
+            const originalTooltip = btn.getAttribute('data-tooltip');
+            
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            btn.setAttribute('data-tooltip', 'Copied!');
+            btn.classList.add('copied');
+            
+            // Add ripple effect
+            const ripple = document.createElement('span');
+            ripple.style.position = 'absolute';
+            ripple.style.top = '50%';
+            ripple.style.left = '50%';
+            ripple.style.width = '0';
+            ripple.style.height = '0';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(16, 185, 129, 0.3)';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.animation = 'rippleEffect 0.6s ease-out';
+            btn.appendChild(ripple);
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.setAttribute('data-tooltip', originalTooltip);
+                btn.classList.remove('copied');
+                ripple.remove();
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy code:', err);
+            btn.innerHTML = '<i class="fas fa-times"></i> Error';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-copy"></i>';
+            }, 2000);
+        });
+    }
+    
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes rippleEffect {
+            to {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Enhanced Text Animations
+    function initTextAnimations() {
+        // Split name text into individual characters
+        const nameText = document.querySelector('.name-text');
+        if (nameText) {
+            const text = nameText.textContent.trim();
+            nameText.innerHTML = '';
+            
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.className = 'split-char';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${0.8 + (index * 0.05)}s`;
+                nameText.appendChild(span);
+            });
+        }
+    }
+
+    // Scroll Indicator Logic
+    function initScrollIndicator() {
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        const heroSection = document.getElementById('hero');
+        const nextSection = document.querySelector('.section-divider')?.nextElementSibling;
+        
+        if (!scrollIndicator || !heroSection || !nextSection) return;
+        
+        // Smooth scroll on click
+        scrollIndicator.addEventListener('click', function() {
+            const nextSectionTop = nextSection.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+                top: nextSectionTop,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Keyboard support
+        scrollIndicator.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const nextSectionTop = nextSection.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: nextSectionTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+        
+        // Intersection Observer to hide indicator
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // When next section is 20% visible, hide indicator
+                    const visibilityRatio = entry.intersectionRatio;
+                    if (visibilityRatio > 0.2) {
+                        scrollIndicator.classList.add('hidden');
+                    } else {
+                        scrollIndicator.classList.remove('hidden');
+                    }
+                }
+            });
+        }, {
+            threshold: [0, 0.2, 0.5, 1],
+            rootMargin: '0px'
+        });
+        
+        // Observe the next section
+        observer.observe(nextSection);
+        
+        // Also hide when scrolling past hero
+        window.addEventListener('scroll', function() {
+            const heroBottom = heroSection.getBoundingClientRect().bottom;
+            if (heroBottom < window.innerHeight * 0.8) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
+            }
+        });
+    }
+
+    // Add tooltip functionality to copy button
+    document.addEventListener('DOMContentLoaded', function() {
+        const copyBtn = document.querySelector('.code-copy-btn');
+        if (copyBtn) {
+            copyBtn.setAttribute('data-tooltip', 'Copy Code');
+        }
+        
+        // Initialize text animations
+        initTextAnimations();
+        
+        // Initialize scroll indicator
+        initScrollIndicator();
+    });
+</script>

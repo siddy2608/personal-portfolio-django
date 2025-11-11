@@ -1,0 +1,288 @@
+{% extends 'core/base.html' %}
+
+{% block title %}About | Siddharth{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="min-height: 60vh; display: flex; align-items: center; position: relative; overflow: hidden;">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <div class="hero-content">
+                    <!-- Status Badge -->
+                    <div class="status-badge glass" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--radius-full); margin-bottom: var(--spacing-md);">
+                        <div style="width: 8px; height: 8px; background: var(--accent-success); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                        <span style="font-size: 14px; color: var(--text-secondary);">Fresh Graduate | Python Developer</span>
+                    </div>
+                    
+                    <!-- Main Heading -->
+                    <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; margin-bottom: var(--spacing-md);">
+                        About <span class="text-gradient">SIDDHARTH MISHRA</span>
+                    </h1>
+                    
+                    <!-- Description -->
+                    <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        A passionate Python Developer with expertise in Full-Stack Development and Artificial Intelligence, recently graduated with B.Tech in Computer Science and Engineering (AI) from Noida Institute of Engineering and Technology. Specialized in Django, React, Machine Learning, and building scalable web applications. Fresh graduate seeking opportunities to apply my skills and grow professionally.
+                    </p>
+                    
+                    <!-- Stats -->
+                    <div class="stats-container" style="margin-bottom: var(--spacing-xl);">
+                        <div class="stat-card">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Projects Built</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bio Section -->
+<section class="section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4">
+                <div class="glass" style="padding: var(--spacing-xl); border-radius: var(--radius-xl); height: 100%;">
+                    <h2 style="color: var(--text-primary); margin-bottom: var(--spacing-lg); font-size: 2rem;">My Story</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); line-height: 1.7; font-size: 1.1rem;">
+                        I'm a passionate Python Developer with a strong foundation in Full-Stack Development and Artificial Intelligence. I recently graduated with B.Tech in Computer Science and Engineering (AI) from Noida Institute of Engineering and Technology.
+                    </p>
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); line-height: 1.7; font-size: 1.1rem;">
+                        I specialize in Python development, Django web framework, React frontend, and machine learning technologies. My journey in technology began with curiosity about how computers work and has evolved into a passion for creating innovative digital solutions. As a fresh graduate, I'm eager to apply my skills in a professional environment and contribute to meaningful projects.
+                    </p>
+                    
+                    <!-- Personal Info Grid -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <i class="fas fa-map-marker-alt" style="color: var(--accent-primary); font-size: 18px;"></i>
+                            <span style="color: var(--text-secondary);">Greater Noida, UP</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <i class="fas fa-graduation-cap" style="color: var(--accent-primary); font-size: 18px;"></i>
+                            <span style="color: var(--text-secondary);">B.Tech CSE (AI)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <i class="fas fa-briefcase" style="color: var(--accent-primary); font-size: 18px;"></i>
+                            <span style="color: var(--text-secondary);">Python Developer</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <i class="fas fa-clock" style="color: var(--accent-primary); font-size: 18px;"></i>
+                            <span style="color: var(--text-secondary);">Seeking Opportunities</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="glass" style="padding: var(--spacing-xl); border-radius: var(--radius-xl); height: 100%;">
+                    <h2 style="color: var(--text-primary); margin-bottom: var(--spacing-lg); font-size: 2rem;">What I Do</h2>
+                    
+                    <!-- Services Grid -->
+                    <div style="display: grid; gap: var(--spacing-md);">
+                        <div style="display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--spacing-md); background: rgba(0, 212, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(0, 212, 255, 0.1);">
+                            <div style="width: 48px; height: 48px; background: var(--gradient-accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 20px; flex-shrink: 0;">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs); font-size: 1.1rem;">Python Development</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Building robust applications with Python, Django, Flask, and modern web technologies.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--spacing-md); background: rgba(255, 107, 157, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 107, 157, 0.1);">
+                            <div style="width: 48px; height: 48px; background: var(--gradient-secondary); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 20px; flex-shrink: 0;">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs); font-size: 1.1rem;">Machine Learning</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Developing AI/ML solutions using TensorFlow, PyTorch, and Scikit-learn for data analysis and prediction.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--spacing-md); background: rgba(124, 58, 237, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(124, 58, 237, 0.1);">
+                            <div style="width: 48px; height: 48px; background: var(--gradient-primary); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 20px; flex-shrink: 0;">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs); font-size: 1.1rem;">Frontend Development</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Creating responsive and interactive user interfaces with React, HTML5, CSS3, and modern JavaScript.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--spacing-md); background: rgba(16, 185, 129, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(16, 185, 129, 0.1);">
+                            <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 20px; flex-shrink: 0;">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-xs); font-size: 1.1rem;">Database Design</h4>
+                                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Designing and managing databases with PostgreSQL, MySQL, MongoDB, and SQLite.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">My academic journey and achievements</p>
+        </div>
+        
+        <div class="row">
+            {% for education in education %}
+            <div class="col-lg-6 mb-4">
+                <div class="card education-card" style="padding: var(--spacing-xl); height: 100%; border-left: 4px solid var(--accent-primary);">
+                    <div style="display: flex; justify-content: between; align-items: flex-start; margin-bottom: var(--spacing-md);">
+                        <div style="flex: 1;">
+                            <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm); font-size: 1.3rem;">{{ education.degree }}</h4>
+                            <h5 style="color: var(--accent-primary); margin-bottom: var(--spacing-sm); font-size: 1.1rem;">{{ education.institution }}</h5>
+                            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">{{ education.field_of_study }}</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="background: rgba(0, 212, 255, 0.1); color: var(--accent-primary); padding: 4px 12px; border-radius: var(--radius-full); font-size: 12px; font-weight: 600;">
+                                {% if education.current %}Current{% else %}Completed{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); line-height: 1.6;">{{ education.description }}</p>
+                    
+                    <div style="color: var(--text-muted); font-size: 14px;">
+                        <i class="fas fa-calendar me-1"></i>
+                        {{ education.start_date|date:"M Y" }} - 
+                        {% if education.current %}Present{% else %}{{ education.end_date|date:"M Y" }}{% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center" style="padding: var(--spacing-2xl);">
+                <div style="width: 120px; height: 120px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg); color: var(--text-muted);">
+                    <i class="fas fa-graduation-cap" style="font-size: 48px;"></i>
+                </div>
+                <h3 style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">Education coming soon</h3>
+                <p style="color: var(--text-muted);">My educational background will be displayed here!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Certifications Section -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-subtitle">Professional certifications and continuous learning</p>
+        </div>
+        
+        <div class="row">
+            {% for certification in certifications %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card certification-card" style="padding: var(--spacing-lg); height: 100%;">
+                    <div style="text-align: center; margin-bottom: var(--spacing-md);">
+                        <div style="width: 64px; height: 64px; background: var(--gradient-accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-sm); color: var(--text-primary); font-size: 24px;">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm); font-size: 1.1rem;">{{ certification.name }}</h4>
+                        <p style="color: var(--accent-primary); font-size: 14px; margin-bottom: var(--spacing-sm);">{{ certification.issuing_organization }}</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="color: var(--text-muted); font-size: 12px; margin-bottom: var(--spacing-sm);">
+                            <i class="fas fa-calendar me-1"></i>
+                            {{ certification.issue_date|date:"M Y" }}
+                        </div>
+                        {% if certification.credential_url %}
+                        <a href="{{ certification.credential_url }}" target="_blank" class="btn btn-ghost" style="font-size: 14px; padding: 8px 16px;">
+                            <i class="fas fa-external-link-alt me-1"></i>View Certificate
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center" style="padding: var(--spacing-2xl);">
+                <div style="width: 120px; height: 120px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg); color: var(--text-muted);">
+                    <i class="fas fa-certificate" style="font-size: 48px;"></i>
+                </div>
+                <h3 style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">Certifications coming soon</h3>
+                <p style="color: var(--text-muted);">My professional certifications will be displayed here!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="glass" style="padding: var(--spacing-2xl); border-radius: var(--radius-xl);">
+                    <h2 style="color: var(--text-primary); margin-bottom: var(--spacing-md);">Interested in working together?</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
+                        I'm always open to discussing new opportunities, interesting projects, and potential collaborations. Let's connect and explore how we can work together!
+                    </p>
+                    
+                    <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                        <a href="{% url 'contact' %}" class="btn btn-primary">
+                            <i class="fas fa-paper-plane me-2"></i>Get In Touch
+                        </a>
+                        <a href="{% url 'projects' %}" class="btn btn-secondary">
+                            <i class="fas fa-eye me-2"></i>View My Work
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+<style>
+.hero-title {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-content {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.education-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-left-color: var(--accent-secondary);
+}
+
+.certification-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+</style>
