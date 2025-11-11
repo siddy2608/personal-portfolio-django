@@ -3,6 +3,8 @@ Production settings for portfolio_django project.
 """
 
 import os
+import secrets
+import string
 from pathlib import Path
 from .settings import *
 
@@ -14,6 +16,19 @@ DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+# Generate a secret key if not provided (for development/testing only)
+# In production, always set DJANGO_SECRET_KEY environment variable in Render!
+if not SECRET_KEY:
+    # Generate a random secret key
+    chars = string.ascii_letters + string.digits + '!@#$%^&*(-_=+)'
+    SECRET_KEY = ''.join(secrets.choice(chars) for _ in range(50))
+    import warnings
+    warnings.warn(
+        "SECRET_KEY not set in environment! Generated a temporary key. "
+        "Set DJANGO_SECRET_KEY environment variable in Render dashboard for production!",
+        UserWarning
+    )
 
 # SECURITY WARNING: update this list with your domain names
 # Base allowed hosts
@@ -41,19 +56,39 @@ X_FRAME_OPTIONS = 'DENY'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'portfolio_db'),
-        'USER': os.environ.get('DB_USER', 'portfolio_user'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
+# Use PostgreSQL if credentials are provided, otherwise fallback to SQLite
+DB_PASSWORD = os.environ.get('DB_PASSWORD')
+DB_HOST = os.environ.get('DB_HOST')
+
+if DB_PASSWORD and DB_HOST:
+    # Use PostgreSQL if credentials are available
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME', 'portfolio_db'),
+            'USER': os.environ.get('DB_USER', 'portfolio_user'),
+            'PASSWORD': DB_PASSWORD,
+            'HOST': DB_HOST,
+            'PORT': os.environ.get('DB_PORT', '5432'),
+            'OPTIONS': {
+                'sslmode': 'require',
+            },
+        }
     }
-}
+else:
+    # Fallback to SQLite for free tier or when PostgreSQL isn't configured
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    import warnings
+    warnings.warn(
+        "PostgreSQL credentials not found. Using SQLite database. "
+        "For production, set up a PostgreSQL database in Render and configure DB_* environment variables.",
+        UserWarning
+    )
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
@@ -136,22 +171,40 @@ LOGGING = {
 }
 
 # Cache Configuration
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379/1'),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+# Use Redis if available, otherwise fallback to in-memory cache
+REDIS_URL = os.environ.get('REDIS_URL')
+if REDIS_URL and REDIS_URL.startswith('redis://'):
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': REDIS_URL,
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            }
         }
     }
-}
-
-# Session Configuration
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_CACHE_ALIAS = 'default'
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+    SESSION_CACHE_ALIAS = 'default'
+else:
+    # Fallback to in-memory cache if Redis isn't available
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'unique-snowflake',
+        }
+    }
+    # Use database sessions if Redis cache isn't available
+    SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+    import warnings
+    warnings.warn(
+        "Redis URL not found. Using in-memory cache and database sessions. "
+        "For production, set up Redis in Render and configure REDIS_URL environment variable.",
+        UserWarning
+    )
 
 # Rate Limiting
-RATELIMIT_ENABLE = True
+# Only enable if cache is properly configured (Redis)
+RATELIMIT_ENABLE = bool(REDIS_URL and REDIS_URL.startswith('redis://'))
 RATELIMIT_USE_CACHE = 'default'
 
 # File Upload Security
